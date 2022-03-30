@@ -6,4 +6,8 @@ Termômetro IoT utilizando nodemcu (esp8266) e enviando as métricas para o zabb
  - DHT.h
  - ESP8266ZabbixSender.h
 
+ # Hardwares Utilizados
+ - NodeMCU v2.0
+ - Módulo do Sensor DHT11 3 Pinos
+
  
