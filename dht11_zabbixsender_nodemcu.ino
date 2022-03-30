@@ -6,8 +6,8 @@ ESP8266ZabbixSender zSender;
 
 // Descomentar o tipo do sensor DHT a ser usado
 #define DHTTYPE DHT11   // DHT 11
-  //#define DHTTYPE DHT21   // DHT 21 (AM2301)
-  //#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
+//#define DHTTYPE DHT21   // DHT 21 (AM2301)
+//#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 
 /* Configurações WiFi */
 String ssid = "guilherme-NET";
@@ -28,10 +28,10 @@ String nan_umid ;
 float Temperature;
 float Humidity;
 
-// Pino do Sensor
+/* Pino do Sensor */
 uint8_t DHTPin = D8; 
 
-// Inicializa o sensor
+/* Inicializa o sensor */
 DHT dht(DHTPin, DHTTYPE);           
 
 void setup() {
@@ -40,15 +40,12 @@ void setup() {
   Serial.begin(115200);
   Serial.println();
 
-  
-  
-
-  //conecta a rede
+  /*conecta a rede */
   Serial.println("Conectando-se a: ");
   Serial.println(ssid);
   WiFi.begin(ssid, pass);
 
-  //verifica a conexão
+  /*verifica a conexão */
   while (WiFi.status() != WL_CONNECTED) {
   delay(500);
   Serial.print(".");
@@ -60,22 +57,20 @@ void setup() {
   Serial.print("IP do NodeMCU : ");  Serial.println(WiFi.localIP());
   Serial.println("######################################################");
 
-  // Inicia o Zabbix sender
+  /* Inicia o Zabbix sender */
   zSender.Init(IPAddress(SERVERADDR), ZABBIXPORT, ZABBIXAGHOST);
 
 }
 
 void loop() {
-  
 
-  
   Temperature = dht.readTemperature(); //Lê a Temperatura
   Humidity = dht.readHumidity(); //Lê a umiddade 
 
-  // Initialize Zabbix sender
+  /* Inicializa Zabbix sender */
   zSender.Init(IPAddress(SERVERADDR), ZABBIXPORT, ZABBIXAGHOST);
   
-  
+  /* Valida os parâmetros aceitaveis de Temperatura */
   nan_temp = String(Temperature);
   if (nan_temp != "nan" && Temperature >=0 && Temperature <200 ){
       zSender.AddItem(ZABBIX_KEY1, Temperature);
@@ -88,6 +83,7 @@ void loop() {
               valida_k1=0;
              }
 
+  /* Valida os parâmetros aceitaveis de Umidade */
   nan_umid = String(Humidity);
   if (nan_umid != "nan" && Humidity >=0 && Humidity <=100 ){
       zSender.AddItem(ZABBIX_KEY2, Humidity);
@@ -101,6 +97,7 @@ void loop() {
               
             }
 
+/* Se houver valor valido de Temperatura ou Umidade, envia ao Zabbix Server*/
   if (valida_k1 != 0 || valida_k2 != 0){
       Serial.println("Enviando Dados para o Zabbix Server");
       zSender.Send() == EXIT_SUCCESS;   
@@ -110,6 +107,7 @@ void loop() {
               Serial.println();                              
             }
  
+ /* Limpa os itens do Zabbix Sender, e aguarda 1 minuto para a proxima coleta */
   zSender.ClearItem();
   Serial.println("60 Segundos para a proxima coleta");
   delay(30000); 
