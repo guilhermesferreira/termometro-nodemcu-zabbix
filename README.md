@@ -13,5 +13,14 @@ Termômetro IoT utilizando nodemcu (esp8266) e enviando as métricas para o zabb
 
 # Zabbix Server
 
-Itens Criados No Zabbix Server
+Itens Criados No Zabbix Server:
 ![](/Host.png)
+
+
+Item Temperatura:
+- Tipo: Trapper Zabbix
+- Chave: temp
+- Tipo de Informação: Float
+- Unidade: °C
+
+![](/Item_temperatura.png)
