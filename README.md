@@ -17,10 +17,12 @@ Itens Criados No Zabbix Server:
 ![](/Host.png)
 
 
-Item Temperatura:
+
+
+
+- -Item Temperatura:
+![](/Item_temperatura.png)
 - Tipo: Trapper Zabbix
 - Chave: temp
 - Tipo de Informação: Float
 - Unidade: °C
-
-![](/Item_temperatura.png)
