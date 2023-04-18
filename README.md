@@ -2,9 +2,9 @@
 Termômetro IoT utilizando nodemcu (esp8266) e enviando as métricas para o zabbix. 
 
 # Bibliotecas Consumidas
- - ESP8266WiFi.h
- - DHT.h
- - ESP8266ZabbixSender.h
+ - ESP8266WiFi
+ - DHT
+ - ESP8266ZabbixSender (Modificada !!)
 
  # Hardwares Utilizados
  - NodeMCU v2.0
@@ -38,3 +38,7 @@ Itens Criados No Zabbix Server:
  - Grafico de Umidade
  - Gauge de Temperatura
  - Gauge de Umidade
+
+# Versão 1.2
+ - Adicionado KEY de Versão.
+ - Adicionado KEY de Endereço de IP
