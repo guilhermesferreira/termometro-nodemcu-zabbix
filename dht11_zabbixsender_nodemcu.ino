@@ -7,14 +7,14 @@ DHT dht(DHTPin, DHTTYPE); // Inicializa o sensor
 /* Parametros Zabbix server */
 #define SERVERADDR 10, 1, 1, 180                   // IP do Servidor
 #define ZABBIXPORT 10051                           // Porta do Servidor
-#define ZABBIXAGHOST "TERMOMETRO_REDUNDANCIA_SJRP" // Nome do Host
+#define ZABBIXAGHOST "NOME_DO_HOST"                // Nome do Host
 #define ZABBIX_KEY1 "temp"                         // Chave 1
 #define ZABBIX_KEY2 "umid"                         // Chave 2
 #define ZABBIX_KEY3 "versao"                       // Chave 3
 #define ZABBIX_KEY4 "ipaddr"                       // Chave 4
 /*Parametros de Conexao*/
-String ssid = "MazaTarraf";          // ssid da rede Wi-Fi
-String password = "mazatarraf2020@"; // senha da rede Wi-Fi
+String ssid = "NOME_DA_REDE";      // ssid da rede Wi-Fi
+String password = "SENHA_DA_REDE; // senha da rede Wi-Fi
 /*Outros Parametros*/
 float Temperature;
 float Humidity;
